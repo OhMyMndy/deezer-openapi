@@ -1,0 +1,484 @@
+openapi: "3.0.0"
+info:
+  version: "1"
+  title: "OpenAPI3Definition 62"
+  description: ""
+paths:
+  /playlist/{id}/tracks:
+    get:
+      operationId: "getPlaylistTracks"
+      description: ""
+      parameters:
+        - in: "path"
+          name: "id"
+          required: true
+          schema:
+            type: "integer"
+        - in: "query"
+          name: "index"
+          schema:
+            type: "integer"
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PlaylistTracks"
+  /playlist/{id}:
+    get:
+      operationId: "getPlaylist"
+      description: ""
+      parameters:
+        - in: "path"
+          name: "id"
+          required: true
+          schema:
+            type: "integer"
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Playlist"
+  /album/{id}:
+    get:
+      operationId: "getAlbum"
+      description: ""
+      parameters:
+        - in: "path"
+          name: "id"
+          required: true
+          schema:
+            type: "integer"
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Album"
+  /artist/{id}:
+    get:
+      operationId: "getArtist"
+      description: ""
+      parameters:
+        - in: "path"
+          name: "id"
+          required: true
+          schema:
+            type: "integer"
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/Artist"
+  /artist/{id}/top:
+    get:
+      operationId: "getArtistTopTracks"
+      description: ""
+      parameters:
+        - in: "path"
+          name: "id"
+          required: true
+          schema:
+            type: "integer"
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TopTracks"
+  /artist/{id}/albums:
+    get:
+      operationId: "getArtistAlbums"
+      description: ""
+      parameters:
+        - in: "path"
+          name: "id"
+          required: true
+          schema:
+            type: "integer"
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Albums"
+  /artist/{id}/related:
+    get:
+      operationId: "getRelatedArtists"
+      description: ""
+      parameters:
+        - in: "path"
+          name: "id"
+          required: true
+          schema:
+            type: "integer"
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Artists"
+  /artist/{id}/radio:
+    get:
+      operationId: "getArtistRadio"
+      description: ""
+      parameters:
+        - in: "path"
+          name: "id"
+          required: true
+          schema:
+            type: "integer"
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Tracks"
+components:
+  securitySchemes: {}
+  schemas:
+    Track:
+      properties:
+        id:
+          nullable: false
+          type: "integer"
+        readable:
+          nullable: false
+          type: "boolean"
+        title:
+          nullable: false
+          type: "string"
+        title_short:
+          nullable: false
+          type: "string"
+        title_version:
+          nullable: false
+          type: "string"
+        irsc:
+          nullable: false
+          type: "string"
+        link:
+          nullable: false
+          type: "string"
+        duration:
+          nullable: false
+          type: "integer"
+        rank:
+          nullable: false
+          type: "integer"
+        explicit_lyrics:
+          nullable: false
+          type: "boolean"
+        explicit_content_lyrics:
+          nullable: false
+          type: "integer"
+        explicit_content_cover:
+          nullable: false
+          type: "integer"
+        preview:
+          nullable: false
+          type: "string"
+        md5_image:
+          nullable: false
+          type: "string"
+        time_add:
+          nullable: false
+          type: "integer"
+        type:
+          nullable: false
+          type: "string"
+        artist:
+          nullable: false
+          $ref: "#/components/schemas/Artist"
+        album:
+          nullable: false
+          $ref: "#/components/schemas/Album"
+    PlaylistTracks:
+      properties:
+        next:
+          nullable: true
+          type: "string"
+        data:
+          nullable: true
+          type: "array"
+          items:
+            $ref: "#/components/schemas/Track"
+        error:
+          nullable: true
+          $ref: "#/components/schemas/Exception"
+    Artist:
+      properties:
+        id:
+          nullable: false
+          type: "integer"
+        name:
+          nullable: false
+          type: "string"
+        link:
+          nullable: false
+          type: "string"
+        picture:
+          nullable: false
+          type: "string"
+        picture_small:
+          nullable: false
+          type: "string"
+        picture_medium:
+          nullable: false
+          type: "string"
+        picture_big:
+          nullable: false
+          type: "string"
+        picture_xl:
+          nullable: false
+          type: "string"
+        tracklist:
+          nullable: false
+          type: "string"
+        type:
+          nullable: false
+          type: "string"
+        artist:
+          nullable: false
+          $ref: "#/components/schemas/Artist"
+    Album:
+      properties:
+        id:
+          nullable: false
+          type: "integer"
+        title:
+          nullable: false
+          type: "string"
+        upc:
+          nullable: false
+          type: "string"
+        cover:
+          nullable: false
+          type: "string"
+        cover_small:
+          nullable: false
+          type: "string"
+        cover_medium:
+          nullable: false
+          type: "string"
+        cover_big:
+          nullable: false
+          type: "string"
+        cover_xl:
+          nullable: false
+          type: "string"
+        md5_image:
+          nullable: false
+          type: "string"
+        tracklist:
+          nullable: false
+          type: "string"
+        type:
+          nullable: false
+          type: "string"
+        genre_id:
+          nullable: false
+          type: "integer"
+        genres:
+          nullable: false
+          $ref: "#/components/schemas/Genres"
+        label:
+          nullable: true
+          type: "string"
+        nb_tracks:
+          nullable: false
+          type: "integer"
+        duration:
+          nullable: false
+          type: "integer"
+        fans:
+          nullable: true
+          type: "integer"
+        release_date:
+          nullable: false
+          type: "string"
+        record_type:
+          nullable: true
+          type: "string"
+        available:
+          nullable: true
+          type: "boolean"
+        explicit_lyrics:
+          nullable: true
+          type: "boolean"
+        explicit_content_lyrics:
+          nullable: true
+          type: "integer"
+        explicit_content_cover:
+          nullable: true
+          type: "integer"
+        contributors:
+          nullable: true
+          type: "array"
+          items:
+            $ref: "#/components/schemas/Artist"
+        artist:
+          nullable: true
+          $ref: "#/components/schemas/Artist"
+        tracks:
+          nullable: true
+          $ref: "#/components/schemas/Tracks"
+    Exception:
+      properties:
+        type:
+          nullable: false
+          type: "string"
+        message:
+          nullable: false
+          type: "string"
+        code:
+          nullable: false
+          type: "integer"
+    Error:
+      properties:
+        error:
+          nullable: false
+          $ref: "#/components/schemas/Exception"
+    Playlist:
+      properties:
+        id:
+          nullable: false
+          type: "integer"
+        title:
+          nullable: false
+          type: "string"
+        description:
+          nullable: false
+          type: "string"
+        duration:
+          nullable: false
+          type: "integer"
+        public:
+          nullable: false
+          type: "boolean"
+        is_loved_track:
+          nullable: false
+          type: "boolean"
+        collaborative:
+          nullable: false
+          type: "boolean"
+        nb_tracks:
+          nullable: false
+          type: "integer"
+        fans:
+          nullable: false
+          type: "integer"
+        link:
+          nullable: false
+          type: "string"
+        share:
+          nullable: false
+          type: "string"
+        picture:
+          nullable: false
+          type: "string"
+        picture_small:
+          nullable: false
+          type: "string"
+        picture_medium:
+          nullable: false
+          type: "string"
+        picture_big:
+          nullable: false
+          type: "string"
+        picture_xl:
+          nullable: false
+          type: "string"
+        checksum:
+          nullable: false
+          type: "string"
+        tracklist:
+          nullable: false
+          type: "string"
+        creation_date:
+          nullable: false
+          type: "string"
+        creator:
+          nullable: false
+          $ref: "#/components/schemas/Creator"
+        type:
+          nullable: false
+          type: "string"
+        tracks:
+          nullable: false
+          $ref: "#/components/schemas/PlaylistTracks"
+    Creator:
+      properties:
+        id:
+          nullable: false
+          type: "integer"
+        name:
+          nullable: false
+          type: "string"
+        tracklist:
+          nullable: true
+          type: "string"
+        type:
+          nullable: false
+          type: "string"
+    Tracks:
+      properties:
+        data:
+          nullable: false
+          type: "array"
+          items:
+            $ref: "#/components/schemas/Track"
+    Genre:
+      properties:
+        id:
+          nullable: false
+          type: "integer"
+        name:
+          nullable: false
+          type: "string"
+        picture:
+          nullable: false
+          type: "string"
+        type:
+          nullable: false
+          type: "string"
+    Genres:
+      properties:
+        data:
+          nullable: false
+          type: "array"
+          items:
+            $ref: "#/components/schemas/Genre"
+    TopTracks:
+      properties:
+        data:
+          nullable: false
+          type: "array"
+          items:
+            $ref: "#/components/schemas/Track"
+    Albums:
+      properties:
+        data:
+          nullable: false
+          type: "array"
+          items:
+            $ref: "#/components/schemas/Album"
+    Artists:
+      properties:
+        data:
+          nullable: false
+          type: "array"
+          items:
+            $ref: "#/components/schemas/Artist"
